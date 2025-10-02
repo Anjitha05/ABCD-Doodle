@@ -38,9 +38,13 @@ public class DrawLine : MonoBehaviour
             }
         }
     }
-    public void SetLineColor(Color color)
+    public void ClearLine()
     {
-        line.startColor = color;
-        line.endColor = color;
+        if (line != null)
+        {
+            line.positionCount = 1;
+            previousPosition = transform.position;
+        }
     }
+    
 }

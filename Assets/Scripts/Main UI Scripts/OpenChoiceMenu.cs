@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class OpenChoiceMenu : MonoBehaviour
 {
@@ -21,9 +22,14 @@ public class OpenChoiceMenu : MonoBehaviour
     public void OnABCDButtonClick()
     {
         Debug.Log("change the ABCD scene");
+        SceneManager.LoadScene(1);
     }
     public void OnabcdButtonClick()
     {
         Debug.Log("change the abcd scene");
+    }
+    public void OnBackButtonClick()
+    {
+         SceneManager.LoadScene(0);
     }
 }

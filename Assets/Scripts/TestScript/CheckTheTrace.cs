@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class CheckTheTrace : MonoBehaviour
 {
-    public Color correctColor = Color.green, wrongColor=Color.red;
+    public Color correctColor = Color.green, wrongColor = Color.red;
     public DrawLine drawLine;
+    public ChangeAlphabet changeAlphabet;
     public Material material;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    bool wentWrong = false;
+
 
     // Update is called once per frame
     void Update()
@@ -34,6 +32,23 @@ public class CheckTheTrace : MonoBehaviour
                 material.color = wrongColor;
                 material.EnableKeyword("_EMISSION");
                 material.SetColor("_EmissionColor", wrongColor);
+                wentWrong = true;
+            }
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (wentWrong == false)
+            {
+                Debug.Log("Good Work. Lets go to next Alphabet");
+                changeAlphabet.NextAlphabet();
+                drawLine.ClearLine();
+            }
+            else
+            {
+                Debug.Log(" Lets try Again");
+                drawLine.ClearLine();
+                wentWrong = false;
             }
         }
 
