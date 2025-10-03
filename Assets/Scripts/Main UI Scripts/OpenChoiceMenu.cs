@@ -27,6 +27,7 @@ public class OpenChoiceMenu : MonoBehaviour
     public void OnabcdButtonClick()
     {
         Debug.Log("change the abcd scene");
+        SceneManager.LoadScene(2);
     }
     public void OnBackButtonClick()
     {

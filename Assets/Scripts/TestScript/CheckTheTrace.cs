@@ -8,6 +8,7 @@ public class CheckTheTrace : MonoBehaviour
     public DrawLine drawLine;
     public ChangeAlphabet changeAlphabet;
     public Material material;
+    public GameObject GoodWork, TryAgain;
     bool wentWrong = false;
 
 
@@ -41,16 +42,31 @@ public class CheckTheTrace : MonoBehaviour
             if (wentWrong == false)
             {
                 Debug.Log("Good Work. Lets go to next Alphabet");
-                changeAlphabet.NextAlphabet();
+                GoodWork.SetActive(true);
+                StartCoroutine(WaitForFewsSecondsBeforeNewAlph());
                 drawLine.ClearLine();
             }
             else
             {
                 Debug.Log(" Lets try Again");
+                TryAgain.SetActive(true);
+                StartCoroutine(WaitForFewsSecondsBeforeNewAlph());
                 drawLine.ClearLine();
                 wentWrong = false;
             }
         }
 
+    }
+    IEnumerator WaitForFewsSecondsBeforeNewAlph()
+    {
+        yield return new WaitForSeconds(2f);
+        if (GoodWork.activeSelf)
+        {
+            GoodWork.SetActive(false);
+            changeAlphabet.NextAlphabet();
+           
+        }
+        if (TryAgain.activeSelf)
+                TryAgain.SetActive(true);
     }
 }
